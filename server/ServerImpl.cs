@@ -91,25 +91,21 @@ namespace CZbor.service
         public void SaveBilet(Bilet bilet)
         {
             biletRepo.save(bilet);
-            //notifyObservers();
         }
 
         public void SaveZbor(Zbor zbor)
         {
             zborRepo.save(zbor);
-            //notifyObservers();
         }
 
         public void SaveAngajat(Angajat angajat)
         {
             angajatRepo.save(angajat);
-            //notifyObservers();
         }
 
         public void SaveTurist(Turist turist)
         {
             turistRepo.save(turist);
-            //notifyObservers();
 
         }
 
@@ -117,8 +113,6 @@ namespace CZbor.service
         {
             zborRepo.update(zbor);
             notifyObservers();
-
-            //notifyObservers();
         }
         public void notifyObservers()
         {
@@ -145,7 +139,6 @@ namespace CZbor.service
                 if (loggedClients.ContainsKey(angajat.Username))
                     throw new Exception("User already logged in.");
                 loggedClients[angajat.Username] = client;
-                //notifyFriendsLoggedIn(user);
                 return angajat;
             }
             else
@@ -161,7 +154,6 @@ namespace CZbor.service
                 if (entry.Key == angajat.Username)
                 {
                     loggedClients.Remove(entry.Key);
-                    //notifyFriendsLoggedOut(user);
                     return;
                 }
             }
@@ -174,7 +166,6 @@ namespace CZbor.service
                 if (entry.Key == angajat.Username)
                 {
                     loggedClients[angajat.Username] = client;
-                    //notifyFriendsLoggedOut(user);
                     return;
                 }
             }

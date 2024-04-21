@@ -18,15 +18,14 @@ namespace CZbor.client
     [Serializable]
     public partial class Search : Form ,IObserver
     {
-        ServerProxy ctrl;
-        //ZboruriCtrl ctrl;
+        ServerProxy server;
         Angajat angajat;
         public Search(ServerProxy ctrl, Angajat angajat)
         {
-            this.ctrl = ctrl;
+            this.server = ctrl;
             this.angajat = angajat;
             InitializeComponent();
-            this.ctrl.SetObsForm(this.angajat,this);
+            this.server.SetObsForm(this.angajat,this);
             FillDataGrid();
 
         }
@@ -37,7 +36,7 @@ namespace CZbor.client
 
             try
             {
-                IEnumerable<Zbor> zboruri = ctrl.FindAllAvailableFlights();
+                IEnumerable<Zbor> zboruri = server.FindAllAvailableFlights();
 
                 zboruriDataGridView.DataSource = zboruri;
                 List<string> destinatii = new List<string>();
@@ -64,10 +63,9 @@ namespace CZbor.client
             {
                 string destinatie = destinationComboBox.Text;
                 DateTime date = Convert.ToDateTime(dataPlecareDateTimePicker.Text);
-                List<Zbor> zboruri = ctrl.FindZborByDestinatieAndDate(destinatie, date).ToList();
+                List<Zbor> zboruri = server.FindZborByDestinatieAndDate(destinatie, date).ToList();
 
                 zboruriDataGridView.DataSource = zboruri;
-                //zboruriDataGridView.Columns["Id"].Visible = false;
 
             }
             catch (Exception ex)
@@ -85,9 +83,9 @@ namespace CZbor.client
 
                 int id = Int32.Parse(zboruriDataGridView.SelectedRows[0].Cells["Id"].Value.ToString());
 
-                Zbor zbor = ctrl.FindZborById(id);
+                Zbor zbor = server.FindZborById(id);
 
-                Buy buy = new Buy(ctrl, zbor, angajat);
+                Buy buy = new Buy(server, zbor, angajat);
                 buy.Text = "Buy flight to " + zbor.Destination + " for " + angajat.Username;
                 buy.Show();
 
@@ -102,25 +100,17 @@ namespace CZbor.client
 
         private void logoutButton_Click(object sender, EventArgs e)
         {
-            ctrl.Logout(angajat);
+            server.Logout(angajat);
             this.Close();
         }
 
-        public void updateDataGrid()
-        {
-           
-            List<Zbor>zb=ctrl.FindAllAvailableFlights().ToList();
-            
-            zboruriDataGridView.DataSource = zb;
-
-        }
-
-        public delegate void UpdateZborResponse();
 
         public void updateZbor()
         {
-
-            zboruriDataGridView.BeginInvoke(new UpdateZborResponse(updateDataGrid), new object[] { });
+            BeginInvoke((MethodInvoker)delegate
+            {
+                FillDataGrid();
+            });
         }
     }
 }

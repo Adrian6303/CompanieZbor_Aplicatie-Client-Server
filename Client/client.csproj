@@ -64,7 +64,6 @@
     <Compile Include="Search.Designer.cs">
       <DependentUpon>Search.cs</DependentUpon>
     </Compile>
-    <Compile Include="ZboruriCtrl.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StartClient.cs" />
     <Compile Include="UserEventArgs.cs" />

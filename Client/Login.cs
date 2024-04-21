@@ -15,14 +15,12 @@ namespace CZbor.client
 {
     public partial class Login : Form, IObserver
     {
-        private ServerProxy ctrl;
-        //private ZboruriCtrl ctrl;
-        //Search search = null;
+        private ServerProxy server;
 
         public Login(ServerProxy ctrl)
         {
             
-            this.ctrl = ctrl;
+            this.server = ctrl;
             InitializeComponent();
 
         }
@@ -36,15 +34,14 @@ namespace CZbor.client
         {
             string user = userTextBox.Text;
             string password = passwordTextBox.Text;
-            Angajat angajat = ctrl.FindAngajat(user, password, this);
+            Angajat angajat = server.FindAngajat(user, password, this);
             if (angajat != null)
             {
-                Search search = new Search(ctrl, angajat);
+                Search search = new Search(server, angajat);
                 search.Text = "Search flight for: " + user;
                 search.Show();
                 userTextBox.Clear();
                 passwordTextBox.Clear();
-                //this.Hide();
             }
             else
             {

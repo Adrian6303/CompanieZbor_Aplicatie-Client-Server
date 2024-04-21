@@ -14,14 +14,13 @@ namespace CZbor.client
 {
     public partial class Buy : Form
     {
-        ServerProxy ctrl;
-        //private ZboruriCtrl ctrl;
+        ServerProxy server;
         private Zbor zbor;
         private Angajat angajat;
 
         public Buy(ServerProxy ctrl,Zbor zbor, Angajat angajat)
         {
-            this.ctrl = ctrl;
+            this.server = ctrl;
             this.zbor = zbor;
             this.angajat = angajat;
 
@@ -63,68 +62,68 @@ namespace CZbor.client
                 string numeClient = NumeClientTextBox.Text;
                 string adresaClient = AdresaClientTextBox.Text;
                 List<Turist> turisti = new List<Turist>();
-                Turist client = ctrl.FindTuristByName(numeClient);
+                Turist client = server.FindTuristByName(numeClient);
                 if (client == null)
                 {
-                    ctrl.SaveTurist(new Turist(numeClient));
-                    client = ctrl.FindTuristByName(numeClient);
+                    server.SaveTurist(new Turist(numeClient));
+                    client = server.FindTuristByName(numeClient);
                 }
                 turisti.Add(client);
                 if (nrTuristi >= 1)
                 {
-                    Turist turist1 = ctrl.FindTuristByName(Turist1TextBox.Text);
+                    Turist turist1 = server.FindTuristByName(Turist1TextBox.Text);
                     if (turist1 == null)
                     {
-                        ctrl.SaveTurist(new Turist(Turist1TextBox.Text));
-                        turist1 = ctrl.FindTuristByName(Turist1TextBox.Text);
+                        server.SaveTurist(new Turist(Turist1TextBox.Text));
+                        turist1 = server.FindTuristByName(Turist1TextBox.Text);
                     }
                     turisti.Add(turist1);
                 }
                 if (nrTuristi >= 2)
                 {
-                    Turist turist2 = ctrl.FindTuristByName(Turist2TextBox.Text);
+                    Turist turist2 = server.FindTuristByName(Turist2TextBox.Text);
                     if (turist2 == null)
                     {
-                        ctrl.SaveTurist(new Turist(Turist2TextBox.Text));
-                        turist2 = ctrl.FindTuristByName(Turist2TextBox.Text);
+                        server.SaveTurist(new Turist(Turist2TextBox.Text));
+                        turist2 = server.FindTuristByName(Turist2TextBox.Text);
                     }
                     turisti.Add(turist2);
                 }
                 if (nrTuristi >= 3)
                 {
-                    Turist turist3 = ctrl.FindTuristByName(Turist3TextBox.Text);
+                    Turist turist3 = server.FindTuristByName(Turist3TextBox.Text);
                     if (turist3 == null)
                     {
-                        ctrl.SaveTurist(new Turist(Turist3TextBox.Text));
-                        turist3 = ctrl.FindTuristByName(Turist3TextBox.Text);
+                        server.SaveTurist(new Turist(Turist3TextBox.Text));
+                        turist3 = server.FindTuristByName(Turist3TextBox.Text);
                     }
                     turisti.Add(turist3);
                 }
                 if (nrTuristi >= 4)
                 {
-                    Turist turist4 = ctrl.FindTuristByName(Turist4TextBox.Text);
+                    Turist turist4 = server.FindTuristByName(Turist4TextBox.Text);
                     if (turist4 == null)
                     {
-                        ctrl.SaveTurist(new Turist(Turist4TextBox.Text));
-                        turist4 = ctrl.FindTuristByName(Turist4TextBox.Text);
+                        server.SaveTurist(new Turist(Turist4TextBox.Text));
+                        turist4 = server.FindTuristByName(Turist4TextBox.Text);
                     }
                     turisti.Add(turist4);
                 }
                 if (nrTuristi == 5)
                 {
-                    Turist turist5 = ctrl.FindTuristByName(Turist5TextBox.Text);
+                    Turist turist5 = server.FindTuristByName(Turist5TextBox.Text);
                     if (turist5 == null)
                     {
-                        ctrl.SaveTurist(new Turist(Turist5TextBox.Text));
-                        turist5 = ctrl.FindTuristByName(Turist5TextBox.Text);
+                        server.SaveTurist(new Turist(Turist5TextBox.Text));
+                        turist5 = server.FindTuristByName(Turist5TextBox.Text);
                     }
                     turisti.Add(turist5);
                 }
                 int nrLocuri = nrTuristi + 1;
                 zbor.NoTotalSeats -= nrLocuri;
-                ctrl.UpdateZbor(zbor);
+                server.UpdateZbor(zbor);
                 Bilet bilet = new Bilet(angajat, zbor, client, turisti, adresaClient, nrLocuri);
-                ctrl.SaveBilet(bilet);
+                server.SaveBilet(bilet);
 
                 MessageBox.Show("Bilet cumparat cu succes!");
                 this.Close();

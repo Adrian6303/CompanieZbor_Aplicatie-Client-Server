@@ -138,19 +138,10 @@ namespace CZbor.networking
     [Serializable]
     public class UpdateZborResponse : Response
     {
-        //private List<Zbor> zboruri;
         public UpdateZborResponse()
         {
-           // this.zboruri = zboruri;
         }
 
-       // public virtual List<Zbor> Zboruri
-        //{
-          //  get
-            //{
-              //  return zboruri;
-           // }
-        //}
 
     }
 

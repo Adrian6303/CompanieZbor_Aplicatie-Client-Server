@@ -75,7 +75,6 @@ namespace CZbor.networking
                 _waitHandle.WaitOne();
                 lock (responses)
                 {
-                    //Monitor.Wait(responses); 
                     response = responses.Dequeue();
 
                 }
@@ -111,12 +110,7 @@ namespace CZbor.networking
         }
 
 
-        private void handleUpdate(UpdateZborResponse update)
-        {
-                //client.updateZbor();
-            
-            
-        }
+
         public virtual void run()
         {
             while (!finished)
@@ -129,11 +123,10 @@ namespace CZbor.networking
                     {
                         lock (responses)
                         {
-                            //UpdateZborResponse r = (UpdateZborResponse)readResponse();
+                            
                             client.updateZbor();
                         }
                         
-                        //handleUpdate((UpdateResponse)response);
                     }
                     else
                     {
@@ -241,7 +234,6 @@ namespace CZbor.networking
         {
             sendRequest(new UpdateZborRequest(zbor));
             Response response = readResponse();
-            //Console.WriteLine("okkkkkk");
         }
 
         public Angajat FindAngajat(string username, string password, IObserver client)

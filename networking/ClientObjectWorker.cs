@@ -80,7 +80,6 @@ namespace CZbor.networking
 
         public void updateZbor()
         {
-            //List<Zbor> listz = server.FindAllAvailableFlights().ToList();
             Response resp = new UpdateZborResponse();
             Console.WriteLine("Update zbor  ...");
             try
@@ -264,7 +263,7 @@ namespace CZbor.networking
             }
             if (request is UpdateZborRequest)
             {
-                Console.WriteLine("SaveBiletRequest ...");
+                Console.WriteLine("UpdateZborRequest ...");
                 UpdateZborRequest getReq = (UpdateZborRequest)request;
                 Zbor zbor = getReq.Zbor;
                 try
