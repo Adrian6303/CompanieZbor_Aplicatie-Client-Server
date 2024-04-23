@@ -17,10 +17,9 @@ namespace CZbor.client
     {
         private ServerProxy server;
 
-        public Login(ServerProxy ctrl)
+        public Login(ServerProxy server)
         {
-            
-            this.server = ctrl;
+            this.server = server;
             InitializeComponent();
 
         }
@@ -48,7 +47,6 @@ namespace CZbor.client
                 MessageBox.Show("Invalid username or password");
             }
         }
-        
 
     }
         

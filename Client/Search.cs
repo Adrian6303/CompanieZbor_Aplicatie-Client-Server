@@ -20,9 +20,9 @@ namespace CZbor.client
     {
         ServerProxy server;
         Angajat angajat;
-        public Search(ServerProxy ctrl, Angajat angajat)
+        public Search(ServerProxy server, Angajat angajat)
         {
-            this.server = ctrl;
+            this.server = server;
             this.angajat = angajat;
             InitializeComponent();
             this.server.SetObsForm(this.angajat,this);
@@ -30,10 +30,8 @@ namespace CZbor.client
 
         }
 
-
         private void FillDataGrid()
         {
-
             try
             {
                 IEnumerable<Zbor> zboruri = server.FindAllAvailableFlights();
@@ -48,7 +46,6 @@ namespace CZbor.client
                     }
                 }
                 destinationComboBox.DataSource = destinatii;
-
             }
             catch (Exception e)
             {
@@ -66,7 +63,6 @@ namespace CZbor.client
                 List<Zbor> zboruri = server.FindZborByDestinatieAndDate(destinatie, date).ToList();
 
                 zboruriDataGridView.DataSource = zboruri;
-
             }
             catch (Exception ex)
             {
@@ -78,9 +74,6 @@ namespace CZbor.client
         {
             try
             {
-
-
-
                 int id = Int32.Parse(zboruriDataGridView.SelectedRows[0].Cells["Id"].Value.ToString());
 
                 Zbor zbor = server.FindZborById(id);
@@ -88,9 +81,6 @@ namespace CZbor.client
                 Buy buy = new Buy(server, zbor, angajat);
                 buy.Text = "Buy flight to " + zbor.Destination + " for " + angajat.Username;
                 buy.Show();
-
-
-
             }
             catch (Exception ex)
             {
@@ -103,7 +93,6 @@ namespace CZbor.client
             server.Logout(angajat);
             this.Close();
         }
-
 
         public void updateZbor()
         {

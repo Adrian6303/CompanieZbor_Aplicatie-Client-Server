@@ -18,12 +18,11 @@ namespace CZbor.client
         private Zbor zbor;
         private Angajat angajat;
 
-        public Buy(ServerProxy ctrl,Zbor zbor, Angajat angajat)
+        public Buy(ServerProxy server,Zbor zbor, Angajat angajat)
         {
-            this.server = ctrl;
+            this.server = server;
             this.zbor = zbor;
             this.angajat = angajat;
-
             InitializeComponent();
             initialize();
         }
@@ -127,9 +126,6 @@ namespace CZbor.client
 
                 MessageBox.Show("Bilet cumparat cu succes!");
                 this.Close();
-
-
-
             }
             catch (Exception ex)
             {

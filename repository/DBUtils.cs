@@ -66,7 +66,6 @@ namespace CZbor.repository
         {
             Console.WriteLine("creating ... sqlite connection");
 
-            //	String connectionString = "URI=file:ChatMPP2017.db,Version=3";
             String connectionString = props["ConnectionString"];
             return new SqliteConnection(connectionString);
 

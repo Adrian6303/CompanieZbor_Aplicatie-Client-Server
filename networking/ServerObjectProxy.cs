@@ -149,26 +149,6 @@ namespace CZbor.networking
             }
         }
 
-        public IEnumerable<Zbor> FindAllZboruri()
-        {
-            throw new NotImplementedException();
-        }
-
-        public IEnumerable<Angajat> FindAllAngajati()
-        {
-            throw new NotImplementedException();
-        }
-
-        public IEnumerable<Turist> FindAllTuristi()
-        {
-            throw new NotImplementedException();
-        }
-
-        public IEnumerable<Bilet> FindAllBilete()
-        {
-            throw new NotImplementedException();
-        }
-
         public IEnumerable<Zbor> FindAllAvailableFlights()
         {
             sendRequest(new GetZboruriRequest());
@@ -178,10 +158,6 @@ namespace CZbor.networking
                 response1 = readResponse();
             }
             return ((GetZboruriResponse)response1).Zboruri;
-            
-            
-            
-            
         }
 
         public IEnumerable<Zbor> FindZborByDestinatieAndDate(string destinatie, DateTime data)
@@ -212,16 +188,6 @@ namespace CZbor.networking
         {
             sendRequest(new SaveBiletRequest(bilet));
             Response response = readResponse();
-        }
-
-        public void SaveZbor(Zbor zbor)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void SaveAngajat(Angajat angajat)
-        {
-            throw new NotImplementedException();
         }
 
         public void SaveTurist(Turist turist)

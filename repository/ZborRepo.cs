@@ -178,44 +178,5 @@ namespace CZbor.repository
                 }
             }
         }
-
-        /* public IEnumerable<Zbor> findByDestinationAndDate(string destination, DateTime date)
-         {
-             log.InfoFormat("Finding Flight by Destination and Date: {0}, {1}", destination, date);
-             IDbConnection con = DBUtils.getConnection(props);
-             IList<Zbor> flights = new List<Zbor>();
-             using (var comm = con.CreateCommand())
-             {
-                 comm.CommandText = "SELECT * FROM zbor WHERE destinatia=@destination AND dataPlecarii=@date; ";
-                 IDbDataParameter paramDestination = comm.CreateParameter();
-                 paramDestination.ParameterName = "@destination";
-                 paramDestination.Value = destination;
-                 comm.Parameters.Add(paramDestination);
-
-                 IDbDataParameter paramDate = comm.CreateParameter();
-                 paramDate.ParameterName = "@date";
-                 paramDate.Value = date.ToString();
-                 comm.Parameters.Add(paramDate);
-
-                 using (var dataR = comm.ExecuteReader())
-                 {
-                     while (dataR.Read())
-                     {
-                         int id = dataR.GetInt32(0);
-                         string dest = dataR.GetString(1);
-                         string d = dataR.GetString(2);
-                         DateTime dP = DateTime.ParseExact(d, "MM/dd/yyyy", CultureInfo.InvariantCulture);
-                         string airport = dataR.GetString(3);
-                         int noSeats = dataR.GetInt32(4);
-                         Zbor flight = new Zbor(dest, dP, airport, noSeats);
-                         flight.Id = id;
-                         flights.Add(flight);
-
-                     }
-                 }
-             }
-             return flights;
-         }*/
-
     }
 }

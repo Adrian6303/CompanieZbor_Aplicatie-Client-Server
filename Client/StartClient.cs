@@ -21,10 +21,6 @@ namespace CZbor.client
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-
-            //IChatServer server=new ChatServerMock();   
-            //FOLOSITI FISIERE DE CONFIGURARE PENTRU A OBTINE IP SI PORT
-            //exemplu in GTKClient
             ServerProxy server = new ServerProxy("127.0.0.1", 55556);
             Login win = new Login(server);
             Application.Run(win);

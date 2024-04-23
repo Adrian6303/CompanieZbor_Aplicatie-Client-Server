@@ -48,7 +48,6 @@ namespace CZbor.repository
                     {
                         int zborID = dataR.GetInt32(1);
                         int touristID = dataR.GetInt32(2);
-                        //IEnumerable < Turist > = null;
                         string adresaClient = dataR.GetString(4);
                         int nrLocuri = dataR.GetInt32(5);
                         int angajatID = dataR.GetInt32(6);
@@ -86,7 +85,6 @@ namespace CZbor.repository
                         int id = dataR.GetInt32(0);
                         int zborID = dataR.GetInt32(1);
                         int touristID = dataR.GetInt32(2);
-                        //IEnumerable < Turist > = null;
                         string adresaClient = dataR.GetString(4);
                         int nrLocuri = dataR.GetInt32(5);
                         int angajatID = dataR.GetInt32(6);

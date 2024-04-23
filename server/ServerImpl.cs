@@ -25,25 +25,7 @@ namespace CZbor.service
             this.biletRepo = biletRepo;
             loggedClients = new Dictionary<string, IObserver>();
         }
-        public IEnumerable<Zbor> FindAllZboruri()
-        {
-            return zborRepo.findAll();
-        }
 
-        public IEnumerable<Angajat> FindAllAngajati()
-        {
-            return angajatRepo.findAll();
-        }
-
-        public IEnumerable<Turist> FindAllTuristi()
-        {
-            return turistRepo.findAll();
-        }
-
-        public IEnumerable<Bilet> FindAllBilete()
-        {
-            return biletRepo.findAll();
-        }
         public IEnumerable<Zbor> FindAllAvailableFlights()
         {
             List<Zbor> zboruri = zborRepo.findAll().ToList();
@@ -91,16 +73,6 @@ namespace CZbor.service
         public void SaveBilet(Bilet bilet)
         {
             biletRepo.save(bilet);
-        }
-
-        public void SaveZbor(Zbor zbor)
-        {
-            zborRepo.save(zbor);
-        }
-
-        public void SaveAngajat(Angajat angajat)
-        {
-            angajatRepo.save(angajat);
         }
 
         public void SaveTurist(Turist turist)

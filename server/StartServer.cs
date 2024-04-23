@@ -59,7 +59,6 @@ namespace CZbor.server
             SerialServer server = new SerialServer(ip, port, serviceImpl);
             server.Start();
             Console.WriteLine("Server started ...");
-            //Console.WriteLine("Press <enter> to exit...");
             Console.ReadLine();
 
         }

@@ -55,7 +55,6 @@ namespace CZbor.repository
 
         public Turist findOneByName(string name)
         {
-            //find tourist by name
             log.InfoFormat("Finding Tourist by Name: {0}", name);
             IDbConnection con = DBUtils.getConnection(props);
 

@@ -166,7 +166,7 @@ namespace CZbor.repository
 
         public void update(Angajat entity)
         {
-
+            new NotImplementedException();
         }
     }
 
