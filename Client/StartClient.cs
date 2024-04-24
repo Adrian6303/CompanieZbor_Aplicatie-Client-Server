@@ -12,9 +12,6 @@ namespace CZbor.client
 {
     static class StartClient
     {
-        /// <summary>
-        /// The main entry point for the application.
-        /// </summary>
         [STAThread]
         static void Main()
         {

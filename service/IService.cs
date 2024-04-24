@@ -13,10 +13,8 @@ namespace CZbor.service
         IEnumerable<Zbor> FindAllAvailableFlights();
         Angajat FindAngajat(string username, string password,IObserver client);
         IEnumerable<Zbor> FindZborByDestinatieAndDate(string destinatie, DateTime data);
-        Zbor FindZborById(int id);
-        Turist FindTuristByName(string name);
+        Turist findOrAddTurist(string name);
         void SaveBilet(Bilet bilet);
-        void SaveTurist(Turist turist);
         void UpdateZbor(Zbor zbor);
         void Logout(Angajat angajat);
         void SetObsForm(Angajat angajat,IObserver client);

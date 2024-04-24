@@ -109,7 +109,25 @@ namespace CZbor.networking
             tw.Start();
         }
 
-
+        private bool isUpdate(Response response)
+        {
+            return response.Type is ResponseType.UPDATE_ZBOR;
+        }
+        private void handleUpdate(Response response)
+        {
+            if (response.Type is ResponseType.UPDATE_ZBOR)
+            {
+                try {       
+                    
+                    client.updateZbor();
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.StackTrace);
+                }
+              
+            }
+        }
 
         public virtual void run()
         {
@@ -119,14 +137,9 @@ namespace CZbor.networking
                 {
                     object response = formatter.Deserialize(stream);
                     Console.WriteLine("response received " + response);
-                    if (response is UpdateZborResponse)
+                    if (isUpdate((Response)response))
                     {
-                        lock (responses)
-                        {
-                            
-                            client.updateZbor();
-                        }
-                        
+                        handleUpdate((Response)response);
                     }
                     else
                     {
@@ -151,54 +164,43 @@ namespace CZbor.networking
 
         public IEnumerable<Zbor> FindAllAvailableFlights()
         {
-            sendRequest(new GetZboruriRequest());
-            Response response1 = readResponse();
-            while (!(response1 is GetZboruriResponse))
-            {
-                response1 = readResponse();
-            }
-            return ((GetZboruriResponse)response1).Zboruri;
+            Request request = new Request.Builder().Type(RequestType.GET_ZBORURI).Build();
+            sendRequest(request);
+            Response response = readResponse();
+
+            return (List<Zbor>) response.Data;
         }
 
         public IEnumerable<Zbor> FindZborByDestinatieAndDate(string destinatie, DateTime data)
         {
-            sendRequest(new FilterZboruriRequest(destinatie,data));
-            FilterZboruriResponse response = (FilterZboruriResponse)readResponse();
+            Zbor zbor = new Zbor(destinatie,data,null, 0);
+            Request request = new Request.Builder().Type(RequestType.FILTER_ZBORURI).Data(zbor).Build();
+            sendRequest(request);
+            Response response = readResponse();
 
-            return response.Zboruri;
+            return (List<Zbor>)response.Data;
         }
 
-        public Zbor FindZborById(int id)
+        public Turist findOrAddTurist(string name)
         {
-            sendRequest(new FindZborRequest(id));
-            FindZborResponse response = (FindZborResponse)readResponse();
+            Request request = new Request.Builder().Type(RequestType.FIND_ADD_TURIST).Data(name).Build();
+            sendRequest(request);
+            Response response = readResponse();
 
-            return response.Zbor;
-        }
-
-        public Turist FindTuristByName(string name)
-        {
-            sendRequest(new FindTuristRequest(name));
-            FindTuristResponse response = (FindTuristResponse)readResponse();
-
-            return response.Turist;
+            return (Turist)response.Data;
         }
 
         public void SaveBilet(Bilet bilet)
         {
-            sendRequest(new SaveBiletRequest(bilet));
-            Response response = readResponse();
-        }
-
-        public void SaveTurist(Turist turist)
-        {
-            sendRequest(new SaveTuristRequest(turist));
+            Request request = new Request.Builder().Type(RequestType.BUY_BILET).Data(bilet).Build();
+            sendRequest(request);
             Response response = readResponse();
         }
 
         public void UpdateZbor(Zbor zbor)
         {
-            sendRequest(new UpdateZborRequest(zbor));
+            Request request = new Request.Builder().Type(RequestType.UPDATE_ZBOR).Data(zbor).Build();
+            sendRequest(request);
             Response response = readResponse();
         }
 
@@ -206,17 +208,16 @@ namespace CZbor.networking
         {
             initializeConnection();
             Angajat angajat = new Angajat(username, password);
-            sendRequest(new LoginRequest(angajat));
+            Request request = new Request.Builder().Type(RequestType.LOGIN).Data(angajat).Build();
+            sendRequest(request);
             Response response = readResponse();
-            if (response is LoginResponse)
+            if (response.Type is ResponseType.OK)
             {
-                LoginResponse response1 = (LoginResponse)response;
                 this.client = client;
-                return response1.Angajat;
+                return (Angajat)response.Data;
             }
-            if (response is ErrorResponse)
+            if (response.Type is ResponseType.ERROR)
             {
-                ErrorResponse err = (ErrorResponse)response;
                 closeConnection();
                 return null;
                 
@@ -226,13 +227,15 @@ namespace CZbor.networking
 
         public void Logout(Angajat angajat)
         {
-            sendRequest(new LogoutRequest(angajat));
+            Request request = new Request.Builder().Type(RequestType.LOGOUT).Data(angajat).Build();
+            sendRequest(request);
             Response response = readResponse();
         }
 
         public void SetObsForm(Angajat angajat, IObserver client)
         {
-            sendRequest(new SetObsRequest(angajat));
+            Request request = new Request.Builder().Type(RequestType.SET_OBSERVER).Data(angajat).Build();
+            sendRequest(request);
             Response response = readResponse();
             this.client = client;
         }

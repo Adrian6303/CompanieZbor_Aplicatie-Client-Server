@@ -80,7 +80,7 @@ namespace CZbor.networking
 
         public void updateZbor()
         {
-            Response resp = new UpdateZborResponse();
+            Response resp = new Response.Builder().Type(ResponseType.UPDATE_ZBOR).Build();
             Console.WriteLine("Update zbor  ...");
             try
             {
@@ -97,11 +97,10 @@ namespace CZbor.networking
         private Response handleRequest(Request request)
         {
             Response response = null;
-            if (request is LoginRequest)
+            if (request.Type is RequestType.LOGIN)
             {
                 Console.WriteLine("Login request ...");
-                LoginRequest logReq = (LoginRequest)request;
-                Angajat angajat = logReq.Angajat;
+                Angajat angajat = (Angajat)request.Data;
                
                 try
                 {
@@ -110,19 +109,19 @@ namespace CZbor.networking
                     {
                         ang = server.FindAngajat(angajat.Username,angajat.Password, this);
                     }
-                    return new LoginResponse(ang);
+                    return new Response.Builder().Type(ResponseType.OK).Data(ang).Build();
                 }
                 catch (Exception e)
                 {
                     connected = false;
-                    return new ErrorResponse(e.Message);
+                    return new Response.Builder().Type(ResponseType.ERROR).Build();
                 }
             }
-            if (request is LogoutRequest)
+            if (request.Type is RequestType.LOGOUT)
             {
                 Console.WriteLine("Logout request ...");
-                LogoutRequest logReq = (LogoutRequest)request;
-                Angajat angajat = logReq.Angajat;
+
+                Angajat angajat = (Angajat)request.Data;
 
                 try
                 {
@@ -130,18 +129,17 @@ namespace CZbor.networking
                     {
                         server.Logout(angajat);
                     }
-                    return new OkResponse();
+                    return new Response.Builder().Type(ResponseType.OK).Build();
                 }
                 catch (Exception e)
                 {
                     connected = false;
-                    return new ErrorResponse(e.Message);
+                    return new Response.Builder().Type(ResponseType.ERROR).Build();
                 }
             }
-            if (request is GetZboruriRequest)
+            if (request.Type is RequestType.GET_ZBORURI)
             {
                 Console.WriteLine("GetZboruriRequest ...");
-                GetZboruriRequest getReq = (GetZboruriRequest)request;
                 List<Zbor> zboruri= new List<Zbor>();
                 try
                 {
@@ -149,103 +147,61 @@ namespace CZbor.networking
                     {
                         zboruri = (List<Zbor>)server.FindAllAvailableFlights();
                     }
-                    return new GetZboruriResponse(zboruri);
+                    return new Response.Builder().Type(ResponseType.GET_ZBORURI).Data(zboruri).Build(); ;
                 }
                 catch (Exception e)
                 {
                     connected = false;
-                    return new ErrorResponse(e.Message);
+                    return new Response.Builder().Type(ResponseType.ERROR).Build();
                 }
             }
 
-            if (request is FilterZboruriRequest)
+            if (request.Type is RequestType.FILTER_ZBORURI)
             {
                 Console.WriteLine("FilterZboruriRequest ...");
-                FilterZboruriRequest getReq = (FilterZboruriRequest)request;
                 List<Zbor> zboruri = new List<Zbor>();
-                string destinatie=getReq.Destinatie;
-                DateTime data=getReq.Data;
+                Zbor zbor = (Zbor)request.Data;
+                string destinatie=zbor.Destination;
+                DateTime data=zbor.Date;
                 try
                 {
                     lock (server)
                     {
                         zboruri = (List<Zbor>)server.FindZborByDestinatieAndDate(destinatie,data);
                     }
-                    return new FilterZboruriResponse(zboruri);
+                    return new Response.Builder().Type(ResponseType.FILTER_ZBORURI).Data(zboruri).Build(); ;
                 }
                 catch (Exception e)
                 {
                     connected = false;
-                    return new ErrorResponse(e.Message);
+                    return new Response.Builder().Type(ResponseType.ERROR).Build(); ;
+                
                 }
             }
-            if (request is FindZborRequest)
+            if (request.Type is RequestType.FIND_ADD_TURIST)
             {
-                Console.WriteLine("FindZborRequest ...");
-                FindZborRequest getReq = (FindZborRequest)request;
-                int id = getReq.ID;
-                try
-                {
-                    Zbor zbor=null;
-                    lock (server)
-                    {
-                        zbor = (Zbor)server.FindZborById(id);
-                    }
-                    
-                    return new FindZborResponse(zbor);
-                }
-                catch (Exception e)
-                {
-                    connected = false;
-                    return new ErrorResponse(e.Message);
-                }
-            }
-            if (request is FindTuristRequest)
-            {
-                Console.WriteLine("FindTuristRequest ...");
-                FindTuristRequest getReq = (FindTuristRequest)request;
-                string nume = getReq.Nume;
+                Console.WriteLine("FindAddTuristRequest ...");
+                string nume = (string)request.Data;
                 try
                 {
                     Turist turist = null;
                     lock (server)
                     {
-                        turist = (Turist) server.FindTuristByName(nume);
+                        turist = (Turist) server.findOrAddTurist(nume);
                     }
 
-                    return new FindTuristResponse(turist);
+                    return new Response.Builder().Type(ResponseType.FIND_ADD_TURIST).Data(turist).Build();
                 }
                 catch (Exception e)
                 {
                     connected = false;
-                    return new ErrorResponse(e.Message);
+                    return new Response.Builder().Type(ResponseType.ERROR).Build();
                 }
             }
-            if (request is SaveTuristRequest)
+            if (request.Type is RequestType.BUY_BILET)
             {
-                Console.WriteLine("SaveTuristRequest ...");
-                SaveTuristRequest getReq = (SaveTuristRequest)request;
-                Turist turist = getReq.Turist;
-                try
-                {
-                    lock (server)
-                    {
-                        server.SaveTurist(turist);
-                    }
-
-                    return new OkResponse();
-                }
-                catch (Exception e)
-                {
-                    connected = false;
-                    return new ErrorResponse(e.Message);
-                }
-            }
-            if (request is SaveBiletRequest)
-            {
-                Console.WriteLine("SaveBiletRequest ...");
-                SaveBiletRequest getReq = (SaveBiletRequest)request;
-                Bilet bilet = getReq.Bilet;
+                Console.WriteLine("BuyBiletRequest ...");
+                Bilet bilet = (Bilet)request.Data;
                 try
                 {
                     lock (server)
@@ -253,19 +209,18 @@ namespace CZbor.networking
                         server.SaveBilet(bilet);
                     }
 
-                    return new OkResponse();
+                    return new Response.Builder().Type(ResponseType.OK).Build();
                 }
                 catch (Exception e)
                 {
                     connected = false;
-                    return new ErrorResponse(e.Message);
+                    return new Response.Builder().Type(ResponseType.ERROR).Build();
                 }
             }
-            if (request is UpdateZborRequest)
+            if (request.Type is RequestType.UPDATE_ZBOR)
             {
                 Console.WriteLine("UpdateZborRequest ...");
-                UpdateZborRequest getReq = (UpdateZborRequest)request;
-                Zbor zbor = getReq.Zbor;
+                Zbor zbor = (Zbor)request.Data;
                 try
                 {
                     lock (server)
@@ -273,19 +228,18 @@ namespace CZbor.networking
                     server.UpdateZbor(zbor);
                     }
 
-                    return new OkResponse();
+                    return new Response.Builder().Type(ResponseType.OK).Build();
                 }
                 catch (Exception e)
                 {
                     connected = false;
-                    return new ErrorResponse(e.Message);
+                    return new Response.Builder().Type(ResponseType.ERROR).Build();
                 }
             }
-            if (request is SetObsRequest)
+            if (request.Type is RequestType.SET_OBSERVER)
             {
                 Console.WriteLine("SetObsRequest ...");
-                SetObsRequest getReq = (SetObsRequest)request;
-                Angajat angajat = getReq.Angajat;
+                Angajat angajat = (Angajat)request.Data;
                 try
                 {
                     lock (server)
@@ -293,12 +247,12 @@ namespace CZbor.networking
                         server.SetObsForm(angajat,this);
                     }
 
-                    return new OkResponse();
+                    return new Response.Builder().Type(ResponseType.OK).Build();
                 }
                 catch (Exception e)
                 {
                     connected = false;
-                    return new ErrorResponse(e.Message);
+                    return new Response.Builder().Type(ResponseType.ERROR).Build();
                 }
             }
 

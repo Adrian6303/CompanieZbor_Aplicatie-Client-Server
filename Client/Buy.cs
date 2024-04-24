@@ -61,61 +61,31 @@ namespace CZbor.client
                 string numeClient = NumeClientTextBox.Text;
                 string adresaClient = AdresaClientTextBox.Text;
                 List<Turist> turisti = new List<Turist>();
-                Turist client = server.FindTuristByName(numeClient);
-                if (client == null)
-                {
-                    server.SaveTurist(new Turist(numeClient));
-                    client = server.FindTuristByName(numeClient);
-                }
+                Turist client = server.findOrAddTurist(numeClient);
                 turisti.Add(client);
                 if (nrTuristi >= 1)
                 {
-                    Turist turist1 = server.FindTuristByName(Turist1TextBox.Text);
-                    if (turist1 == null)
-                    {
-                        server.SaveTurist(new Turist(Turist1TextBox.Text));
-                        turist1 = server.FindTuristByName(Turist1TextBox.Text);
-                    }
+                    Turist turist1 = server.findOrAddTurist(Turist1TextBox.Text);
                     turisti.Add(turist1);
                 }
                 if (nrTuristi >= 2)
                 {
-                    Turist turist2 = server.FindTuristByName(Turist2TextBox.Text);
-                    if (turist2 == null)
-                    {
-                        server.SaveTurist(new Turist(Turist2TextBox.Text));
-                        turist2 = server.FindTuristByName(Turist2TextBox.Text);
-                    }
+                    Turist turist2 = server.findOrAddTurist(Turist2TextBox.Text);
                     turisti.Add(turist2);
                 }
                 if (nrTuristi >= 3)
                 {
-                    Turist turist3 = server.FindTuristByName(Turist3TextBox.Text);
-                    if (turist3 == null)
-                    {
-                        server.SaveTurist(new Turist(Turist3TextBox.Text));
-                        turist3 = server.FindTuristByName(Turist3TextBox.Text);
-                    }
+                    Turist turist3 = server.findOrAddTurist(Turist3TextBox.Text);
                     turisti.Add(turist3);
                 }
                 if (nrTuristi >= 4)
                 {
-                    Turist turist4 = server.FindTuristByName(Turist4TextBox.Text);
-                    if (turist4 == null)
-                    {
-                        server.SaveTurist(new Turist(Turist4TextBox.Text));
-                        turist4 = server.FindTuristByName(Turist4TextBox.Text);
-                    }
+                    Turist turist4 = server.findOrAddTurist(Turist4TextBox.Text);
                     turisti.Add(turist4);
                 }
                 if (nrTuristi == 5)
                 {
-                    Turist turist5 = server.FindTuristByName(Turist5TextBox.Text);
-                    if (turist5 == null)
-                    {
-                        server.SaveTurist(new Turist(Turist5TextBox.Text));
-                        turist5 = server.FindTuristByName(Turist5TextBox.Text);
-                    }
+                    Turist turist5 = server.findOrAddTurist(Turist5TextBox.Text);
                     turisti.Add(turist5);
                 }
                 int nrLocuri = nrTuristi + 1;

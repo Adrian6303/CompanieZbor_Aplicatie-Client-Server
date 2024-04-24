@@ -74,13 +74,22 @@ namespace CZbor.client
         {
             try
             {
-                int id = Int32.Parse(zboruriDataGridView.SelectedRows[0].Cells["Id"].Value.ToString());
+                Zbor zbor = null;
+                if (zboruriDataGridView.SelectedRows.Count > 0)
+                {
+                    DataGridViewRow row = zboruriDataGridView.SelectedRows[0];
+                    zbor = row.DataBoundItem as Zbor;
 
-                Zbor zbor = server.FindZborById(id);
+                    Buy buy = new Buy(server, zbor, angajat);
+                    buy.Text = "Buy flight to " + zbor.Destination + " for " + angajat.Username;
+                    buy.Show();
+                }
+                else
+                {
+                    MessageBox.Show("Please select a flight");
+                }
 
-                Buy buy = new Buy(server, zbor, angajat);
-                buy.Text = "Buy flight to " + zbor.Destination + " for " + angajat.Username;
-                buy.Show();
+     
             }
             catch (Exception ex)
             {

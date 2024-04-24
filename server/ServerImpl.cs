@@ -65,20 +65,21 @@ namespace CZbor.service
             return zborRepo.findOne(id);
         }
 
-        public Turist FindTuristByName(string name)
+        public Turist findOrAddTurist(string name)
         {
-            return turistRepo.findOneByName(name);
+            Turist turist=turistRepo.findOneByName(name);
+            if (turist == null)
+            {
+                turist = new Turist(name);
+                turistRepo.save(turist);
+                turist = turistRepo.findOneByName(name);
+            }
+            return turist;
         }
 
         public void SaveBilet(Bilet bilet)
         {
             biletRepo.save(bilet);
-        }
-
-        public void SaveTurist(Turist turist)
-        {
-            turistRepo.save(turist);
-
         }
 
         public void UpdateZbor(Zbor zbor)
