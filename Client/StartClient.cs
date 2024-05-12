@@ -18,7 +18,7 @@ namespace CZbor.client
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            ServerProxy server = new ServerProxy("127.0.0.1", 55556);
+            ServerProxy server = new ServerProxy("127.0.0.1", 55555);
             Login win = new Login(server);
             Application.Run(win);
         }

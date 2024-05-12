@@ -11,12 +11,13 @@ using CZbor.repository;
 using CZbor.service;
 using CZbor.networking;
 using ServerTemplate;
+using CZbor.protobuffprotocol;
 
 namespace CZbor.server
 {
     class StartServer
     {
-        private static int DEFAULT_PORT = 55556;
+        private static int DEFAULT_PORT = 55555;
         private static String DEFAULT_IP = "127.0.0.1";
         static void Main(string[] args)
         {
@@ -80,7 +81,8 @@ namespace CZbor.server
     public class SerialServer : ConcurrentServer
     {
         private IService server;
-        private ClientWorker worker;
+        //private ClientWorker worker;
+        private ClientObjectWorkerProto worker;
         public SerialServer(string host, int port, IService server) : base(host, port)
         {
             this.server = server;
@@ -88,7 +90,8 @@ namespace CZbor.server
         }
         protected override Thread createWorker(TcpClient client)
         {
-            worker = new ClientWorker(server, client);
+            //worker = new ClientWorker(server, client);
+            worker = new ClientObjectWorkerProto(server, client);
             return new Thread(new ThreadStart(worker.run));
         }
     }

@@ -147,7 +147,7 @@ namespace CZbor.networking
                     {
                         zboruri = (List<Zbor>)server.FindAllAvailableFlights();
                     }
-                    return new Response.Builder().Type(ResponseType.GET_ZBORURI).Data(zboruri).Build(); ;
+                    return new Response.Builder().Type(ResponseType.GET_ZBORURI).Data(zboruri).Build();
                 }
                 catch (Exception e)
                 {
@@ -174,7 +174,7 @@ namespace CZbor.networking
                 catch (Exception e)
                 {
                     connected = false;
-                    return new Response.Builder().Type(ResponseType.ERROR).Build(); ;
+                    return new Response.Builder().Type(ResponseType.ERROR).Build();
                 
                 }
             }
