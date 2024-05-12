@@ -25,34 +25,34 @@ namespace Proto {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
             "CgtDWmJvci5wcm90bxIFcHJvdG8iKQoHQW5nYWphdBIMCgR1c2VyGAEgASgJ",
-            "EhAKCHBhc3N3b3JkGAIgASgJIlQKBFpib3ISEgoKZGVzdGluYXRpYRgBIAEo",
+            "EhAKCHBhc3N3b3JkGAIgASgJImAKBFpib3ISEgoKZGVzdGluYXRpYRgBIAEo",
             "CRIUCgxkYXRhUGxlY2FyaWkYAiABKAkSEAoIYWVyb3BvcnQYAyABKAkSEAoI",
-            "bnJMb2N1cmkYBCABKAUiFgoGVHVyaXN0EgwKBG51bWUYASABKAkirwEKBUJp",
-            "bGV0Eh8KB2FuZ2FqYXQYASABKAsyDi5wcm90by5BbmdhamF0EhkKBHpib3IY",
-            "AiABKAsyCy5wcm90by5aYm9yEh0KBmNsaWVudBgDIAEoCzINLnByb3RvLlR1",
-            "cmlzdBIjCgxsaXN0YVR1cmlzdGkYBCADKAsyDS5wcm90by5UdXJpc3QSFAoM",
-            "YWRyZXNhQ2xpZW50GAUgASgJEhAKCG5yTG9jdXJpGAYgASgFIssCCgdSZXF1",
-            "ZXN0EigKBHR5cGUYASABKA4yGi5wcm90by5SZXF1ZXN0LlJlcXVlc3RUeXBl",
-            "EhsKBHpib3IYAiABKAsyCy5wcm90by5aYm9ySAASDgoEbmFtZRgDIAEoCUgA",
-            "Eh0KBWJpbGV0GAQgASgLMgwucHJvdG8uQmlsZXRIABIhCgdhbmdhamF0GAUg",
-            "ASgLMg4ucHJvdG8uQW5nYWphdEgAEh8KBnR1cmlzdBgGIAEoCzINLnByb3Rv",
-            "LlR1cmlzdEgAIn4KC1JlcXVlc3RUeXBlEgkKBUxPR0lOEAASDwoLR0VUX1pC",
-            "T1JVUkkQARISCg5GSUxURVJfWkJPUlVSSRACEg0KCUJVWV9CSUxFVBADEhMK",
-            "D0ZJTkRfQUREX1RVUklTVBAEEg8KC1VQREFURV9aQk9SEAUSCgoGTE9HT1VU",
-            "EAZCBgoEZGF0YSLWAgoIUmVzcG9uc2USKgoEdHlwZRgBIAEoDjIcLnByb3Rv",
-            "LlJlc3BvbnNlLlJlc3BvbnNlVHlwZRINCgVlcnJvchgCIAEoCRIfCgdhbmdh",
-            "amF0GAMgASgLMg4ucHJvdG8uQW5nYWphdBIcCgd6Ym9ydXJpGAQgAygLMgsu",
-            "cHJvdG8uWmJvchIMCgRudW1lGAUgASgJEh0KBnR1cmlzdBgGIAEoCzINLnBy",
-            "b3RvLlR1cmlzdBIZCgR6Ym9yGAcgASgLMgsucHJvdG8uWmJvciKHAQoMUmVz",
-            "cG9uc2VUeXBlEgYKAk9LEAASCQoFRVJST1IQARIPCgtHRVRfWkJPUlVSSRAC",
-            "EhIKDkZJTFRFUl9aQk9SVVJJEAMSEwoPRklORF9BRERfVFVSSVNUEAQSDwoL",
-            "VVBEQVRFX1pCT1IQBRINCglCVVlfQklMRVQQBhIKCgZMT0dPVVQQB2IGcHJv",
-            "dG8z"));
+            "bnJMb2N1cmkYBCABKAUSCgoCaWQYBSABKAUiFgoGVHVyaXN0EgwKBG51bWUY",
+            "ASABKAkirwEKBUJpbGV0Eh8KB2FuZ2FqYXQYASABKAsyDi5wcm90by5Bbmdh",
+            "amF0EhkKBHpib3IYAiABKAsyCy5wcm90by5aYm9yEh0KBmNsaWVudBgDIAEo",
+            "CzINLnByb3RvLlR1cmlzdBIjCgxsaXN0YVR1cmlzdGkYBCADKAsyDS5wcm90",
+            "by5UdXJpc3QSFAoMYWRyZXNhQ2xpZW50GAUgASgJEhAKCG5yTG9jdXJpGAYg",
+            "ASgFIssCCgdSZXF1ZXN0EigKBHR5cGUYASABKA4yGi5wcm90by5SZXF1ZXN0",
+            "LlJlcXVlc3RUeXBlEhsKBHpib3IYAiABKAsyCy5wcm90by5aYm9ySAASDgoE",
+            "bmFtZRgDIAEoCUgAEh0KBWJpbGV0GAQgASgLMgwucHJvdG8uQmlsZXRIABIh",
+            "CgdhbmdhamF0GAUgASgLMg4ucHJvdG8uQW5nYWphdEgAEh8KBnR1cmlzdBgG",
+            "IAEoCzINLnByb3RvLlR1cmlzdEgAIn4KC1JlcXVlc3RUeXBlEgkKBUxPR0lO",
+            "EAASDwoLR0VUX1pCT1JVUkkQARISCg5GSUxURVJfWkJPUlVSSRACEg0KCUJV",
+            "WV9CSUxFVBADEhMKD0ZJTkRfQUREX1RVUklTVBAEEg8KC1VQREFURV9aQk9S",
+            "EAUSCgoGTE9HT1VUEAZCBgoEZGF0YSLWAgoIUmVzcG9uc2USKgoEdHlwZRgB",
+            "IAEoDjIcLnByb3RvLlJlc3BvbnNlLlJlc3BvbnNlVHlwZRINCgVlcnJvchgC",
+            "IAEoCRIfCgdhbmdhamF0GAMgASgLMg4ucHJvdG8uQW5nYWphdBIcCgd6Ym9y",
+            "dXJpGAQgAygLMgsucHJvdG8uWmJvchIMCgRudW1lGAUgASgJEh0KBnR1cmlz",
+            "dBgGIAEoCzINLnByb3RvLlR1cmlzdBIZCgR6Ym9yGAcgASgLMgsucHJvdG8u",
+            "WmJvciKHAQoMUmVzcG9uc2VUeXBlEgYKAk9LEAASCQoFRVJST1IQARIPCgtH",
+            "RVRfWkJPUlVSSRACEhIKDkZJTFRFUl9aQk9SVVJJEAMSEwoPRklORF9BRERf",
+            "VFVSSVNUEAQSDwoLVVBEQVRFX1pCT1IQBRINCglCVVlfQklMRVQQBhIKCgZM",
+            "T0dPVVQQB2IGcHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::Proto.Angajat), global::Proto.Angajat.Parser, new[]{ "User", "Password" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Proto.Zbor), global::Proto.Zbor.Parser, new[]{ "Destinatia", "DataPlecarii", "Aeroport", "NrLocuri" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Proto.Zbor), global::Proto.Zbor.Parser, new[]{ "Destinatia", "DataPlecarii", "Aeroport", "NrLocuri", "Id" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Proto.Turist), global::Proto.Turist.Parser, new[]{ "Nume" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Proto.Bilet), global::Proto.Bilet.Parser, new[]{ "Angajat", "Zbor", "Client", "ListaTuristi", "AdresaClient", "NrLocuri" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Proto.Request), global::Proto.Request.Parser, new[]{ "Type", "Zbor", "Name", "Bilet", "Angajat", "Turist" }, new[]{ "Data" }, new[]{ typeof(global::Proto.Request.Types.RequestType) }, null, null),
@@ -329,6 +329,7 @@ namespace Proto {
       dataPlecarii_ = other.dataPlecarii_;
       aeroport_ = other.aeroport_;
       nrLocuri_ = other.nrLocuri_;
+      id_ = other.id_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -386,6 +387,18 @@ namespace Proto {
       }
     }
 
+    /// <summary>Field number for the "id" field.</summary>
+    public const int IdFieldNumber = 5;
+    private int id_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int Id {
+      get { return id_; }
+      set {
+        id_ = value;
+      }
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override bool Equals(object other) {
@@ -405,6 +418,7 @@ namespace Proto {
       if (DataPlecarii != other.DataPlecarii) return false;
       if (Aeroport != other.Aeroport) return false;
       if (NrLocuri != other.NrLocuri) return false;
+      if (Id != other.Id) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -416,6 +430,7 @@ namespace Proto {
       if (DataPlecarii.Length != 0) hash ^= DataPlecarii.GetHashCode();
       if (Aeroport.Length != 0) hash ^= Aeroport.GetHashCode();
       if (NrLocuri != 0) hash ^= NrLocuri.GetHashCode();
+      if (Id != 0) hash ^= Id.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -450,6 +465,10 @@ namespace Proto {
         output.WriteRawTag(32);
         output.WriteInt32(NrLocuri);
       }
+      if (Id != 0) {
+        output.WriteRawTag(40);
+        output.WriteInt32(Id);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -476,6 +495,10 @@ namespace Proto {
         output.WriteRawTag(32);
         output.WriteInt32(NrLocuri);
       }
+      if (Id != 0) {
+        output.WriteRawTag(40);
+        output.WriteInt32(Id);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
       }
@@ -497,6 +520,9 @@ namespace Proto {
       }
       if (NrLocuri != 0) {
         size += 1 + pb::CodedOutputStream.ComputeInt32Size(NrLocuri);
+      }
+      if (Id != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Id);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -521,6 +547,9 @@ namespace Proto {
       }
       if (other.NrLocuri != 0) {
         NrLocuri = other.NrLocuri;
+      }
+      if (other.Id != 0) {
+        Id = other.Id;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -553,6 +582,10 @@ namespace Proto {
             NrLocuri = input.ReadInt32();
             break;
           }
+          case 40: {
+            Id = input.ReadInt32();
+            break;
+          }
         }
       }
     #endif
@@ -582,6 +615,10 @@ namespace Proto {
           }
           case 32: {
             NrLocuri = input.ReadInt32();
+            break;
+          }
+          case 40: {
+            Id = input.ReadInt32();
             break;
           }
         }

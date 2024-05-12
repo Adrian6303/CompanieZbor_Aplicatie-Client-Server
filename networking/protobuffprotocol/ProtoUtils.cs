@@ -35,6 +35,7 @@ namespace CZbor.protobuffprotocol
         public static CZbor.model.Zbor GetZbor(Proto.Request request)
         {
             var zbor = new CZbor.model.Zbor(request.Zbor.Destinatia, DateTime.Parse(request.Zbor.DataPlecarii), request.Zbor.Aeroport, request.Zbor.NrLocuri);
+            zbor.Id = request.Zbor.Id;
             return zbor;
         }
 
@@ -69,6 +70,7 @@ namespace CZbor.protobuffprotocol
                 protoZbor.DataPlecarii = zbor.DataPlecarii;
                 protoZbor.Aeroport = zbor.Aeroport;
                 protoZbor.NrLocuri = zbor.NrLocuri;
+                protoZbor.Id = zbor.Id;
 
                 response.Zboruri.Add(protoZbor);
             }
@@ -85,6 +87,7 @@ namespace CZbor.protobuffprotocol
                 protoZbor.DataPlecarii = zbor.DataPlecarii;
                 protoZbor.Aeroport = zbor.Aeroport;
                 protoZbor.NrLocuri = zbor.NrLocuri;
+                protoZbor.Id = zbor.Id;
 
                 response.Zboruri.Add(protoZbor);
             }

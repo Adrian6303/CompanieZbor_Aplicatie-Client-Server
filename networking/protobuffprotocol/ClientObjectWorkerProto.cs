@@ -158,6 +158,7 @@ namespace CZbor.protobuffprotocol
                         protoZbor.DataPlecarii = zbor.Date.ToString();
                         protoZbor.Aeroport = zbor.Airport;
                         protoZbor.NrLocuri = zbor.NoTotalSeats;
+                        protoZbor.Id = zbor.Id;
 
                         zboruriProto.Add(protoZbor);
                     }
@@ -191,6 +192,7 @@ namespace CZbor.protobuffprotocol
                         protoZbor.DataPlecarii = zbor1.Date.ToString();
                         protoZbor.Aeroport = zbor1.Airport;
                         protoZbor.NrLocuri = zbor1.NoTotalSeats;
+                        protoZbor.Id = zbor1.Id;
 
                         zboruriProto.Add(protoZbor);
                     }
