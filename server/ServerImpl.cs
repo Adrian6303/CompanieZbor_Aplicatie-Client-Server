@@ -13,11 +13,12 @@ namespace CZbor.service
         private ZborRepo zborRepo;
         private AngajatRepo angajatRepo;
         private BiletRepo biletRepo;
-        private TuristRepo turistRepo;
+        //private TuristRepo turistRepo;
+        private TuristRepoH turistRepo;
         private readonly IDictionary<String, IObserver> loggedClients;
 
 
-        public ServerImpl(AngajatRepo angajatRepo, ZborRepo zborRepo, TuristRepo turistRepo, BiletRepo biletRepo)
+        public ServerImpl(AngajatRepo angajatRepo, ZborRepo zborRepo, TuristRepoH turistRepo, BiletRepo biletRepo)
         {
             this.angajatRepo = angajatRepo;
             this.zborRepo = zborRepo;

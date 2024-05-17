@@ -50,7 +50,8 @@ namespace CZbor.server
             IDictionary<String, string> props = new SortedList<String, String>();
             props.Add("ConnectionString", GetConnectionStringByName("zboruriDB"));
             AngajatRepo angajatRepo = new AngajatRepo(props);
-            TuristRepo turistRepo = new TuristRepo(props);
+            //TuristRepo turistRepo = new TuristRepo(props);
+            TuristRepoH turistRepo = new TuristRepoH();
             ZborRepo zborRepo = new ZborRepo(props);
             BiletRepo biletRepo = new BiletRepo(props,angajatRepo,zborRepo,turistRepo);
             IService serviceImpl = new ServerImpl(angajatRepo, zborRepo, turistRepo,biletRepo);
@@ -81,8 +82,8 @@ namespace CZbor.server
     public class SerialServer : ConcurrentServer
     {
         private IService server;
-        //private ClientWorker worker;
-        private ClientObjectWorkerProto worker;
+        private ClientWorker worker;
+        //private ClientObjectWorkerProto worker;
         public SerialServer(string host, int port, IService server) : base(host, port)
         {
             this.server = server;
@@ -90,8 +91,8 @@ namespace CZbor.server
         }
         protected override Thread createWorker(TcpClient client)
         {
-            //worker = new ClientWorker(server, client);
-            worker = new ClientObjectWorkerProto(server, client);
+            worker = new ClientWorker(server, client);
+            //worker = new ClientObjectWorkerProto(server, client);
             return new Thread(new ThreadStart(worker.run));
         }
     }

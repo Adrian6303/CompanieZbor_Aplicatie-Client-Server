@@ -14,11 +14,12 @@ namespace CZbor.repository
     {
         private readonly AngajatRepo angajatRepository;
         private readonly ZborRepo zborRepository;
-        private readonly TuristRepo touristRepository;
+        //private readonly TuristRepo touristRepository;
+        private readonly TuristRepoH touristRepository;
         private static readonly ILog log = LogManager.GetLogger("Trip Repository");
         IDictionary<String, string> props;
 
-        public BiletRepo(IDictionary<String, string> props, AngajatRepo angajatRepo, ZborRepo zborRepo, TuristRepo touristRepository)
+        public BiletRepo(IDictionary<String, string> props, AngajatRepo angajatRepo, ZborRepo zborRepo, TuristRepoH touristRepository)
         {
             log.Info("Creating UserRepository ");
             this.props = props;

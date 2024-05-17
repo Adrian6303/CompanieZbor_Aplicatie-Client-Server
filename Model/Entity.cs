@@ -11,7 +11,7 @@ namespace CZbor.model
 {
         private ID _id;
 
-        public ID Id
+        public virtual ID Id
         {
             get { return _id; }
             set

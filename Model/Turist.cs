@@ -15,8 +15,11 @@ namespace CZbor.model
         {
             this.nume = touristName;
         }
+        public Turist()
+        {
+        }
 
-        public string TouristName
+        public virtual string TouristName
         {
             get { return nume; }
             set { nume = value; }
